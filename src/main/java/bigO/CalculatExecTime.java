@@ -60,6 +60,42 @@ public class CalculatExecTime {
 
         return sum_1 + sum_2 + sum_3;
     }
+
+
+    int cal5(int n) {
+        int ret = 0;
+        int i = 1;
+        for (; i < n; ++i) {
+            ret = ret + f(i);
+        }
+        return ret;
+    }
+
+    int f(int n) {
+        int sum = 0;
+        int i = 1;
+        for (; i < n; ++i) {
+            sum = sum + i;
+        }
+        return sum;
+    }
+
+
+    int cal(int m, int n) {
+        int sum_1 = 0;
+        int i = 1;
+        for (; i < m; ++i) {
+            sum_1 = sum_1 + i;
+        }
+
+        int sum_2 = 0;
+        int j = 1;
+        for (; j < n; ++j) {
+            sum_2 = sum_2 + j;
+        }
+
+        return sum_1 + sum_2;
+    }
     public static void main(String[] args) {
 
         long before = System.currentTimeMillis();
