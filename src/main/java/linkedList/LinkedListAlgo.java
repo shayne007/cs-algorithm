@@ -18,7 +18,6 @@ public class LinkedListAlgo {
             curr.next = pre;
             pre = curr;
             curr = next;
-
         }
         return pre;
     }
