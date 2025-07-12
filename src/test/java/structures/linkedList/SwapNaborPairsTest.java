@@ -1,9 +1,7 @@
-package linkedList;
+package structures.linkedList;
 
 import org.junit.Assert;
 import org.junit.Test;
-import structures.linkedList.ListNode;
-import structures.linkedList.SwapNaborPairs;
 
 public class SwapNaborPairsTest {
 

@@ -1,10 +1,8 @@
-package linkedList;
+package structures.linkedList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-import structures.linkedList.ListNode;
-import structures.linkedList.ReverseLinkedList;
 
 public class ReverseLinkedListTest {
 
