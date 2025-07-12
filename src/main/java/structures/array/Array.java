@@ -1,4 +1,4 @@
-package com.feng.dataStructures.array;
+package structures.array;
 
 /**
  * @author fengsy

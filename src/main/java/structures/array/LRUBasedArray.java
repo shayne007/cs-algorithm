@@ -1,4 +1,4 @@
-package com.feng.dataStructures.array;
+package structures.array;
 
 import java.util.HashMap;
 import java.util.Map;

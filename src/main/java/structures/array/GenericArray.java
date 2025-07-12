@@ -1,4 +1,4 @@
-package com.feng.dataStructures.array;
+package structures.array;
 
 public class GenericArray<T> {
     private T[] data;
