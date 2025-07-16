@@ -5,11 +5,14 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
- * s
+ * 数组中三个数字组成的最小数
+ * <p>
  * [21,30,62,5,31]
- *
+ * <p>
+ * 21305
  *
  * @since 2025/7/12
  */
@@ -17,17 +20,19 @@ public class ComposeMinNumber {
 
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
-    String[] strs = sc.nextLine().split(","); // 读取输入并按逗号分割
-    System.out.println(findResult(strs)); // 计算结果并输出
+    String[] numbers = sc.nextLine().split(","); // 读取输入并按逗号分割
+    System.out.println(findMinComposedResult(numbers)); // 计算结果并输出
   }
 
-  public static String findResult(String[] strs) {
+  public static String findMinComposedResult(String[] numbers) {
     // 先按照数值大小排序，并取最小的 3 个元素
-    List<String> sortedList = Arrays.stream(strs)
-        .sorted(Comparator.comparingInt(Integer::parseInt)) // 数值排序
-        .limit(3) // 取最小的 3 个元素
-        .sorted((a, b) -> (a + b).compareTo(b + a)) // 按拼接结果排序
-        .collect(Collectors.toList());
+    Stream<String> three = Arrays.stream(numbers)
+        .sorted(Comparator.comparingInt(Integer::parseInt))
+        .limit(3);
+    // 按两两拼接后的结果排序
+    List<String> sortedList =
+        three.sorted((a, b) -> (a + b).compareTo(b + a))
+            .collect(Collectors.toList());
     // 拼接排序后的字符串列表并返回
     return String.join("", sortedList);
   }

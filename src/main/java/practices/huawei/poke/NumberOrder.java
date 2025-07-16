@@ -1,4 +1,4 @@
-package practices.huawei.arrays;
+package practices.huawei.poke;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,24 +11,31 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * TODO
+ * 整理扑克牌的顺序
  *
- * @since 2025/7/12
+ * @since 2025/7/16
  */
-public class CardOrder {
+public class NumberOrder {
 
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
+    System.out.println("Please enter some input:");
     List<Integer> numbers = new ArrayList<>();
     // 读取输入直到输入结束
     while (sc.hasNextInt()) {
       numbers.add(sc.nextInt());
     }
+    System.out.println("You entered: " + numbers);
     // 输出处理后的卡片排列顺序
     System.out.println(processCards(numbers));
   }
 
-  // 处理卡片排列的函数
+  /**
+   * 处理卡片排列的函数
+   *
+   * @param numbers 输入的数字列表
+   * @return
+   */
   public static String processCards(List<Integer> numbers) {
     // Step 1: 统计每张卡片的出现次数
     Map<Integer, Integer> count = new HashMap<>();
@@ -100,4 +107,5 @@ public class CardOrder {
     // 返回处理后的结果，使用空格连接
     return result.stream().map(String::valueOf).collect(Collectors.joining(" "));
   }
+
 }

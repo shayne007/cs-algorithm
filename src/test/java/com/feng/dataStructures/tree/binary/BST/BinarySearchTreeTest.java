@@ -1,9 +1,9 @@
 package com.feng.dataStructures.tree.binary.BST;
 
+import org.junit.jupiter.api.Test;
+import org.testng.Assert;
 import structures.tree.binary.BST.BinarySearchTree;
 import structures.tree.binary.TreeNode;
-import org.junit.Assert;
-import org.junit.Test;
 
 public class BinarySearchTreeTest {
 

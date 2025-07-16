@@ -1,8 +1,9 @@
 package structures.linkedList;
 
-import static org.junit.Assert.assertEquals;
 
-import org.junit.Test;
+import static org.testng.Assert.assertEquals;
+
+import org.testng.annotations.Test;
 
 public class ReverseLinkedListTest {
 
