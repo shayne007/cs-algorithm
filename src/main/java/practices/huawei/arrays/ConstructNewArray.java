@@ -31,17 +31,29 @@ public class ConstructNewArray {
     return dfs(newArr, 0, 0, arr[0], m, 0);
   }
 
-  public static int dfs(Integer[] arr, int index, int sum, int min, int target, int count) {
-    if (sum > target) {
+  /**
+   * 深度优先搜索(回溯算法)
+   *
+   * @param arr
+   * @param index
+   * @param curSum
+   * @param min
+   * @param target
+   * @param count
+   * @return
+   */
+  public static int dfs(Integer[] arr, int index, int curSum, int min, int target, int count) {
+    if (curSum > target) {
       return count;
     }
 
-    if (sum == target || (target - sum < min && target - sum > 0)) {
+    if (curSum == target || (target - curSum < min && target - curSum > 0)) {
       return count + 1;
     }
-
+    // 第一个数有arr.length个选择
     for (int i = index; i < arr.length; i++) {
-      count = dfs(arr, i, sum + arr[i], min, target, count);
+      int sum = curSum + arr[i];
+      count = dfs(arr, i, sum, min, target, count);
     }
 
     return count;
