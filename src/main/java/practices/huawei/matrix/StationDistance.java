@@ -34,35 +34,45 @@ public class StationDistance {
 
   public static int getResult(int[][] matrix, int n) {
     boolean[] used = new boolean[n];
-    LinkedList<Integer> path = new LinkedList<>();
+    LinkedList<Integer> queue = new LinkedList<>();
     int[] ans = {Integer.MAX_VALUE};
 
-    dfs(n, used, path, ans, matrix);
-
+    dfs(n, used, queue, ans, matrix);
     return ans[0];
   }
 
+  /**
+   * 深度优先搜索, 路径有1 2 3 1 与 1 2 3 1两条，即 2 和 3 的全排列
+   * @param n
+   * @param used
+   * @param pathQueue
+   * @param ans
+   * @param matrix
+   */
   public static void dfs(
-      int n, boolean[] used, LinkedList<Integer> path, int[] ans, int[][] matrix) {
-    if (path.size() == n - 1) {
-      int dis = matrix[0][path.get(0)];
-      for (int i = 0; i < path.size() - 1; i++) {
-        int p = path.get(i);
-        int c = path.get(i + 1);
+      int n, boolean[] used, LinkedList<Integer> pathQueue, int[] ans, int[][] matrix) {
+    // 已排列全部基站
+    if (pathQueue.size() == n - 1) {
+      int dis = matrix[0][pathQueue.get(0)];
+      for (int i = 0; i < pathQueue.size() - 1; i++) {
+        int p = pathQueue.get(i);
+        int c = pathQueue.get(i + 1);
         dis += matrix[p][c];
       }
-      dis += matrix[path.getLast()][0];
+      dis += matrix[pathQueue.getLast()][0];
       ans[0] = Math.min(ans[0], dis);
+      System.out.println(pathQueue);
       return;
     }
 
     for (int i = 1; i < n; i++) {
       if (!used[i]) {
-        path.push(i);
+        pathQueue.push(i);
         used[i] = true;
-        dfs(n, used, path, ans, matrix);
+        dfs(n, used, pathQueue, ans, matrix);
         used[i] = false;
-        path.pop();
+        // 回溯
+        pathQueue.pop();
       }
     }
   }
