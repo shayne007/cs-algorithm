@@ -1,10 +1,12 @@
 package practices.huawei.stack.asteroidCollision;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 /**
  * 荒岛求生 https://leetcode.cn/problems/asteroid-collision/
@@ -15,17 +17,12 @@ public class Collision {
 
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
-
-    // 读取一行输入，并使用空格分隔字符串
-    String[] input = scanner.nextLine().split(" ");
-
     // 创建一个整数列表，用于存储输入的整数
-    List<Integer> forces = new ArrayList<>();
-
-    // 将输入的字符串数组转换为整数，并添加到people列表中
-    for (String s : input) {
-      forces.add(Integer.parseInt(s));
-    }
+    // 输入 5 10 8 -8 -5
+    List<Integer> forces = Arrays.stream(scanner.nextLine().split(" "))
+        .mapToInt(Integer::parseInt)
+        .boxed()
+        .collect(Collectors.toList());
 
     // 如果people列表的大小大于30000，则输出-1
     if (forces.size() > 30000) {
@@ -36,8 +33,14 @@ public class Collision {
     System.out.println(asteroidCollision(forces));
   }
 
-  // 定义一个名为asteroidCollision的方法，接受一个整数列表作为参数
+  /**
+   * 计算碰撞结果
+   *
+   * @param forces 输入的整数列表
+   * @return 碰撞结果
+   */
   public static int asteroidCollision(List<Integer> forces) {
+    // 使用ArrayDeque作为栈
     Deque<Integer> stack = new ArrayDeque<>();
     // 遍历输入的整数列表
     for (int force : forces) {
