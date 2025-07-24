@@ -1,4 +1,4 @@
-package practices.huawei.printer;
+package practices.huawei.other.printer;
 
 import java.util.HashMap;
 import java.util.PriorityQueue;

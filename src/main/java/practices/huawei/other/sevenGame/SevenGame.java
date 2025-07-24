@@ -1,4 +1,4 @@
-package practices.huawei.sevenGame;
+package practices.huawei.other.sevenGame;
 
 import java.math.BigInteger;
 import java.util.Scanner;

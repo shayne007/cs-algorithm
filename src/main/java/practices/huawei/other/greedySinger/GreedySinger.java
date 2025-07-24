@@ -1,4 +1,4 @@
-package practices.huawei.greedySinger;
+package practices.huawei.other.greedySinger;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;

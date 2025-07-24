@@ -1,4 +1,4 @@
-package practices.huawei.device;
+package practices.huawei.other.device;
 
 import java.util.ArrayList;
 import java.util.Comparator;

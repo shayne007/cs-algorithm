@@ -1,4 +1,4 @@
-package practices.huawei.excel;
+package practices.huawei.other.excel;
 
 import java.util.Scanner;
 

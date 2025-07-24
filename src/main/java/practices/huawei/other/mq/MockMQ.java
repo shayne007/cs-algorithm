@@ -1,4 +1,4 @@
-package practices.huawei.mq;
+package practices.huawei.other.mq;
 
 import java.util.ArrayList;
 import java.util.Arrays;

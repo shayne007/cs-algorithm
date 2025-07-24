@@ -1,4 +1,4 @@
-package practices.huawei.waterPool;
+package practices.huawei.other.waterPool;
 
 import java.util.Arrays;
 import java.util.HashSet;

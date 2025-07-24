@@ -1,4 +1,4 @@
-package practices.huawei.poke;
+package practices.huawei.other.poke;
 
 import java.util.ArrayList;
 import java.util.Collections;

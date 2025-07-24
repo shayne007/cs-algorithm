@@ -1,4 +1,4 @@
-package algorithms.backTracking;
+package practices.huawei.other;
 
 import java.util.ArrayList;
 import java.util.Collections;

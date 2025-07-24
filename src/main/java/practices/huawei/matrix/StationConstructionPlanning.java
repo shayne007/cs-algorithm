@@ -1,8 +1,11 @@
-package practices.huawei;
+package practices.huawei.matrix;
 
 import java.util.Scanner;
 
 /**
+ * 光伏场地建设规划
+ *
+ * <p>
  * 题目描述 祖国西北部有一片大片荒地，其中零星的分布着一些湖泊，保护区，矿区; 整体上常年光照良好，但是也有一些地区光照不太好。
  * <p>
  * 某电力公司希望在这里建设多个光伏电站，生产清洁能源对每平方公里的土地进行了发电评估， 其中不能建设的区域发电量为0kw，可以发电的区域根据光照，地形等给出了每平方公里年发电量x千瓦。
@@ -10,13 +13,29 @@ import java.util.Scanner;
  * <p>
  * 输入描述: 第一行输入为调研的地区长，宽，以及准备建设的电站【长宽相等，为正方形】的边长，最低要求的发电量。 之后每行为调研区域每平方公里的发电量。
  * <p>
- * 例如，输入为： 2 5 2 6 1 3 4 5 8 2 3 6 7 1 表示调研的区域大小为长 2 宽 5 的矩形，我们要建设的电站的边长为 2，建设电站最低发电量为 6
+ * 例如，输入为：
+ * <p>
+ * 2 5 2 6
+ * <p>
+ * 1 3 4 5 8
+ * <p>
+ * 2 3 6 7 1
+ * <p>
+ * 表示调研的区域大小为长 2 宽 5 的矩形，我们要建设的电站的边长为 2，建设电站最低发电量为 6
  * <p>
  * 输出描述: 输出为这样的区域有多少个？ 上述输入长度为 2 的正方形满足发电量大于等于 6 的区域有 4 个。则输出为： 4
  * <p>
  * 用例一： 输入： 2 5 2 6 1 3 4 5 8 2 3 6 7 1 输出： 4
  * <p>
- * 用例二： 输入： 2 5 1 6 1 3 4 5 8 2 3 6 7 1 输出： 3
+ * 用例二： 输入：
+ * <p>
+ * 2 5 1 6
+ * <p>
+ * 1 3 4 5 8
+ * <p>
+ * 2 3 6 7 1
+ * <p>
+ * 输出： 3
  *
  * @since 2025/7/12
  */
@@ -24,11 +43,11 @@ public class StationConstructionPlanning {
 
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
-    // 输入地区长r，宽c，电站边长s，最低发电量min
+    // 输入地区长（这里使用数组的行数row表示），宽（数组的列数col），电站边长size，最低发电量目标target
     int row = scanner.nextInt();
     int col = scanner.nextInt();
     int size = scanner.nextInt();
-    int min = scanner.nextInt();
+    int target = scanner.nextInt();
 
     // 输入每个区域每平方公里的发电量，存入矩阵matrix中
     int[][] matrix = new int[row][col];
@@ -39,7 +58,8 @@ public class StationConstructionPlanning {
     }
 
     // 输出结果
-    System.out.println(countValidAreas(row, col, size, min, matrix));
+    System.out.println(countValidAreas(row, col, size, target, matrix));
+    System.out.println(countValidAreasOptimal(row, col, size, target, matrix));
   }
 
   /**
@@ -48,22 +68,22 @@ public class StationConstructionPlanning {
    * @param rows   网格的行数
    * @param cols   网格的列数
    * @param size   子矩形的边长
-   * @param minSum 子矩形的最小总和
+   * @param target 子矩形的最小总和
    * @param matrix 输入网格
    * @return 满足条件的子矩形数量
    */
-  private static int countValidAreas(int rows, int cols, int size, int minSum, int[][] matrix) {
+  private static int countValidAreas(int rows, int cols, int size, int target, int[][] matrix) {
     // 遍历所有可能的电站位置，计算该位置的矩形区域发电量
     int ans = 0;
     for (int i = size; i <= rows; i++) {
       for (int j = size; j <= cols; j++) {
-        int square = 0;
+        int squareVal = 0;
         for (int x = i - size; x < i; x++) {
           for (int y = j - size; y < j; y++) {
-            square += matrix[x][y];
+            squareVal += matrix[x][y];
           }
         }
-        if (square >= minSum) {
+        if (squareVal >= target) {
           ans++;
         }
       }
@@ -72,16 +92,18 @@ public class StationConstructionPlanning {
   }
 
   /**
-   * 统计满足条件的子矩形数量
+   * 统计满足条件的子矩形数量,优化了重复计算的问题
+   * <p>
+   * 使用二维前缀和数组，参考： https://leetcode.cn/problems/range-sum-query-2d-immutable/
    *
    * @param rows   网格的行数
    * @param cols   网格的列数
    * @param size   子矩形的边长
-   * @param minSum 子矩形的最小总和
+   * @param target 子矩形的最小总和
    * @param matrix 输入网格
    * @return 符合条件的子矩形数量
    */
-  public static int countValidAreasOptimal(int rows, int cols, int size, int minSum,
+  public static int countValidAreasOptimal(int rows, int cols, int size, int target,
       int[][] matrix) {
     // 1. 构建二维前缀和数组
     int[][] prefixSum = new int[rows + 1][cols + 1]; // 多加一行和一列，用于简化计算
@@ -103,7 +125,7 @@ public class StationConstructionPlanning {
             - prefixSum[i][j - size]
             + prefixSum[i - size][j - size];
         // 判断是否满足最小总和条件
-        if (sum >= minSum) {
+        if (sum >= target) {
           count++;
         }
       }
