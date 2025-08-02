@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
-import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 /**
  * 连续字符统计,单个字符返回其之后出现的次数
  * <p>
- * https://leetcode.cn/problems/consecutive-characters
+ * 连续字符最大统计 参考题：https://leetcode.cn/problems/consecutive-characters
  * <p>输入
  * bcaAAbB
  * <p>输出，第一b不连续，返回b2；c不连续返回后面有一个c，返回c1，以此类推得到：b2a3b2c0，数字排序后得到结果如下：

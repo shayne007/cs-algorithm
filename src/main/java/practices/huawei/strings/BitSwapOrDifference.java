@@ -3,7 +3,9 @@ package practices.huawei.strings;
 import java.util.Scanner;
 
 /**
- * TODO
+ * 两个二进制数011011、110110，第一个数的其中两个位置的数发生调换
+ * <p>
+ * 有几种情况会导致这两个数的或运算结果产生差异。
  *
  * @since 2025/7/25
  */
