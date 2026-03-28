@@ -2,6 +2,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * https://leetcode.com/discuss/post/2544063/oa-uber-by-anonymous_user-o5jx/
+ */
 public class CableConnection {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -26,7 +29,7 @@ public class CableConnection {
 
         long result2 = minCableLength(states, Arrays.stream(distances).mapToInt(d -> (int) d).toArray());
         System.out.println(result2);
-        
+
         scanner.close();
     }
 
@@ -64,7 +67,8 @@ public class CableConnection {
     public static long calculateMinCableLength(int N, int[] states, long[] distances) {
         long totalCableLength = 0;
 
-        // Create an array to mark which systems are powered (either originally ON or connected)
+        // Create an array to mark which systems are powered (either originally ON or
+        // connected)
         boolean[] powered = new boolean[N];
 
         // Initially, mark all ON systems as powered
