@@ -1,4 +1,6 @@
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class CableConnection {
     public static void main(String[] args) {
@@ -22,7 +24,41 @@ public class CableConnection {
         long result = calculateMinCableLength(N, states, distances);
         System.out.println(result);
 
+        long result2 = minCableLength(states, Arrays.stream(distances).mapToInt(d -> (int) d).toArray());
+        System.out.println(result2);
+        
         scanner.close();
+    }
+
+    public static int minCableLength(int[] systemState, int[] dist) {
+        int minCableLength = 0;
+
+        List<Integer> offIndex = IntStream.range(0, systemState.length)
+                .filter(i -> systemState[i] == 0)
+                .boxed()
+                .collect(Collectors.toList());
+        for (Integer i : offIndex) {
+            if (i == 0) {
+                minCableLength += dist[i];
+            } else {
+                Integer leftOnComputerDist = dist[i] - dist[i - 1];
+                Integer rightOnComputerDist = null;
+                Integer rightOnComputerInd = i + 1;
+                while (rightOnComputerInd < systemState.length && systemState[rightOnComputerInd] != 1) {
+                    rightOnComputerInd++;
+                }
+                if (rightOnComputerInd < systemState.length && systemState[rightOnComputerInd] == 1) {
+                    rightOnComputerDist = dist[rightOnComputerInd] - dist[i];
+                }
+                if (rightOnComputerDist != null) {
+                    minCableLength += leftOnComputerDist < rightOnComputerDist ? leftOnComputerDist
+                            : rightOnComputerDist;
+                } else {
+                    minCableLength += leftOnComputerDist;
+                }
+            }
+        }
+        return minCableLength;
     }
 
     public static long calculateMinCableLength(int N, int[] states, long[] distances) {
