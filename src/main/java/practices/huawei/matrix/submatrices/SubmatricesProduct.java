@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
+ * https://leetcode.com/problems/distribute-elements-into-two-arrays-i
+ * 
  * Count the number of submatrices that contain the top-left element (grid[0][0])
  * and have a product of all elements ≤ k.
  *
