@@ -1,3 +1,5 @@
+package practices.huawei.other.cable;
+
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;

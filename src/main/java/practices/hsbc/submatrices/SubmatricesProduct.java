@@ -1,4 +1,4 @@
-package practices.huawei.matrix.submatrices;
+package practices.hsbc.submatrices;
 
 import java.util.Arrays;
 import java.util.Scanner;
