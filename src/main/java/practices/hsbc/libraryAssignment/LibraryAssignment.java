@@ -25,9 +25,9 @@ public class LibraryAssignment {
     int issuedSubjectsNumber = scanner.nextInt(); // should be equal to M
 
     // Read issued books for each student
-    int[][] issued = new int[N][issuedSubjectsNumber];
+    int[][] issued = new int[N][M];
     for (int i = 0; i < N; i++) {
-      for (int j = 0; j < issuedSubjectsNumber; j++) {
+      for (int j = 0; j < M; j++) {
         issued[i][j] = scanner.nextInt();
       }
     }
@@ -37,9 +37,9 @@ public class LibraryAssignment {
     int requiredBookSubjects = scanner.nextInt(); // should be equal to M
 
     // Read required books for each student
-    int[][] required = new int[requiredBookStudents][requiredBookSubjects];
-    for (int i = 0; i < requiredBookStudents; i++) {
-      for (int j = 0; j < requiredBookSubjects; j++) {
+    int[][] required = new int[N][M];
+    for (int i = 0; i < N; i++) {
+      for (int j = 0; j < M; j++) {
         required[i][j] = scanner.nextInt();
       }
     }
